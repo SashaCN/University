@@ -72,9 +72,8 @@ namespace University
                     students = JsonSerializer.Deserialize<List<Student>>(fs);
                 }
             }
-            catch (Exception i)
+            catch (Exception)
             {
-                string message = i.Message;
                 students = new List<Student>();
             }
 
@@ -132,11 +131,38 @@ namespace University
             {
                 JsonSerializer.Serialize(fs, students);
             }
+
+            MessageBox.Show("Registration successfully!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
+
+        public Student authorizedStudent = new Student();
 
         private void Login_Button_Click(object sender, EventArgs e)
         {
             List<Student> students = new List<Student>(getStudents());
+
+            foreach(Student student in students)
+            {
+                if (Login_Email.Text == student.Email)
+                {
+                    if (Login_Password.Text == student.Password)
+                    {
+                        authorizedStudent = student;
+                        MessageBox.Show("Login successfully!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        break;
+                    } else
+                    {
+                        MessageBox.Show("Password is incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There is not registered student with such email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+
+            }
         }
     }
 }

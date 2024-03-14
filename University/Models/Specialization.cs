@@ -11,6 +11,10 @@ namespace University.Models
         public string Name { get; set; }
         public List<Subject> Subjects { get; set; }
 
+        public Specialization() { 
+            Subjects = new List<Subject>();
+        }
+
         public Specialization(string name) { 
             Name = name;
             Subjects = new List<Subject>();
