@@ -30,197 +30,277 @@ namespace University
         /// </summary>
         private void InitializeComponent()
         {
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Login = new System.Windows.Forms.TabPage();
-            this.Registration = new System.Windows.Forms.TabPage();
-            this.Registration_Specialization = new MaterialSkin.Controls.MaterialComboBox();
-            this.Registration_Button = new MaterialSkin.Controls.MaterialButton();
-            this.Registration_Password = new MaterialSkin.Controls.MaterialTextBox();
-            this.Registration_Email = new MaterialSkin.Controls.MaterialTextBox();
-            this.Registration_Surname = new MaterialSkin.Controls.MaterialTextBox();
-            this.Registration_Name = new MaterialSkin.Controls.MaterialTextBox();
-            this.tabControl1.SuspendLayout();
-            this.Registration.SuspendLayout();
-            this.SuspendLayout();
+            propertyGrid1 = new PropertyGrid();
+            tabControl1 = new TabControl();
+            Login = new TabPage();
+            Registration = new TabPage();
+            Registration_Specialization = new MaterialSkin.Controls.MaterialComboBox();
+            Registration_Button = new MaterialSkin.Controls.MaterialButton();
+            Registration_Password = new MaterialSkin.Controls.MaterialTextBox();
+            Registration_Email = new MaterialSkin.Controls.MaterialTextBox();
+            Registration_Surname = new MaterialSkin.Controls.MaterialTextBox();
+            Registration_Name = new MaterialSkin.Controls.MaterialTextBox();
+            Login_Button = new MaterialSkin.Controls.MaterialButton();
+            Login_Password = new MaterialSkin.Controls.MaterialTextBox();
+            Login_Email = new MaterialSkin.Controls.MaterialTextBox();
+            tabControl1.SuspendLayout();
+            Login.SuspendLayout();
+            Registration.SuspendLayout();
+            SuspendLayout();
             // 
             // propertyGrid1
             // 
-            this.propertyGrid1.CategorySplitterColor = System.Drawing.SystemColors.ControlText;
-            this.propertyGrid1.Location = new System.Drawing.Point(528, 378);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(8, 8);
-            this.propertyGrid1.TabIndex = 0;
+            propertyGrid1.CategorySplitterColor = SystemColors.ControlText;
+            propertyGrid1.Location = new Point(616, 436);
+            propertyGrid1.Margin = new Padding(4, 3, 4, 3);
+            propertyGrid1.Name = "propertyGrid1";
+            propertyGrid1.Size = new Size(9, 9);
+            propertyGrid1.TabIndex = 0;
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.Login);
-            this.tabControl1.Controls.Add(this.Registration);
-            this.tabControl1.Location = new System.Drawing.Point(-4, 66);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(808, 388);
-            this.tabControl1.TabIndex = 1;
-            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            tabControl1.Controls.Add(Login);
+            tabControl1.Controls.Add(Registration);
+            tabControl1.Location = new Point(-5, 76);
+            tabControl1.Margin = new Padding(4, 3, 4, 3);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(943, 448);
+            tabControl1.TabIndex = 1;
+            tabControl1.Selected += tabControl1_Selected;
             // 
             // Login
             // 
-            this.Login.Location = new System.Drawing.Point(4, 22);
-            this.Login.Name = "Login";
-            this.Login.Padding = new System.Windows.Forms.Padding(3);
-            this.Login.Size = new System.Drawing.Size(800, 362);
-            this.Login.TabIndex = 0;
-            this.Login.Text = "Login";
-            this.Login.UseVisualStyleBackColor = true;
+            Login.BackColor = Color.FromArgb(50, 50, 50);
+            Login.Controls.Add(Login_Button);
+            Login.Controls.Add(Login_Password);
+            Login.Controls.Add(Login_Email);
+            Login.Location = new Point(4, 24);
+            Login.Margin = new Padding(4, 3, 4, 3);
+            Login.Name = "Login";
+            Login.Padding = new Padding(4, 3, 4, 3);
+            Login.Size = new Size(935, 420);
+            Login.TabIndex = 0;
+            Login.Text = "Login";
             // 
             // Registration
             // 
-            this.Registration.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.Registration.Controls.Add(this.Registration_Specialization);
-            this.Registration.Controls.Add(this.Registration_Button);
-            this.Registration.Controls.Add(this.Registration_Password);
-            this.Registration.Controls.Add(this.Registration_Email);
-            this.Registration.Controls.Add(this.Registration_Surname);
-            this.Registration.Controls.Add(this.Registration_Name);
-            this.Registration.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Registration.Location = new System.Drawing.Point(4, 22);
-            this.Registration.Name = "Registration";
-            this.Registration.Padding = new System.Windows.Forms.Padding(3);
-            this.Registration.Size = new System.Drawing.Size(800, 362);
-            this.Registration.TabIndex = 1;
-            this.Registration.Text = "Registration";
+            Registration.BackColor = Color.FromArgb(50, 50, 50);
+            Registration.Controls.Add(Registration_Specialization);
+            Registration.Controls.Add(Registration_Button);
+            Registration.Controls.Add(Registration_Password);
+            Registration.Controls.Add(Registration_Email);
+            Registration.Controls.Add(Registration_Surname);
+            Registration.Controls.Add(Registration_Name);
+            Registration.ForeColor = SystemColors.ControlText;
+            Registration.Location = new Point(4, 24);
+            Registration.Margin = new Padding(4, 3, 4, 3);
+            Registration.Name = "Registration";
+            Registration.Padding = new Padding(4, 3, 4, 3);
+            Registration.Size = new Size(935, 420);
+            Registration.TabIndex = 1;
+            Registration.Text = "Registration";
             // 
             // Registration_Specialization
             // 
-            this.Registration_Specialization.AutoResize = false;
-            this.Registration_Specialization.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Registration_Specialization.Depth = 0;
-            this.Registration_Specialization.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.Registration_Specialization.DropDownHeight = 174;
-            this.Registration_Specialization.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Registration_Specialization.DropDownWidth = 121;
-            this.Registration_Specialization.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.Registration_Specialization.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Registration_Specialization.FormattingEnabled = true;
-            this.Registration_Specialization.Hint = "Specialization";
-            this.Registration_Specialization.IntegralHeight = false;
-            this.Registration_Specialization.ItemHeight = 43;
-            this.Registration_Specialization.Location = new System.Drawing.Point(565, 35);
-            this.Registration_Specialization.MaxDropDownItems = 4;
-            this.Registration_Specialization.MouseState = MaterialSkin.MouseState.OUT;
-            this.Registration_Specialization.Name = "Registration_Specialization";
-            this.Registration_Specialization.Size = new System.Drawing.Size(218, 49);
-            this.Registration_Specialization.StartIndex = 0;
-            this.Registration_Specialization.TabIndex = 10;
+            Registration_Specialization.AutoResize = false;
+            Registration_Specialization.BackColor = Color.FromArgb(255, 255, 255);
+            Registration_Specialization.Depth = 0;
+            Registration_Specialization.DrawMode = DrawMode.OwnerDrawVariable;
+            Registration_Specialization.DropDownHeight = 174;
+            Registration_Specialization.DropDownStyle = ComboBoxStyle.DropDownList;
+            Registration_Specialization.DropDownWidth = 121;
+            Registration_Specialization.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            Registration_Specialization.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            Registration_Specialization.FormattingEnabled = true;
+            Registration_Specialization.Hint = "Specialization";
+            Registration_Specialization.IntegralHeight = false;
+            Registration_Specialization.ItemHeight = 43;
+            Registration_Specialization.Location = new Point(659, 40);
+            Registration_Specialization.Margin = new Padding(4, 3, 4, 3);
+            Registration_Specialization.MaxDropDownItems = 4;
+            Registration_Specialization.MouseState = MaterialSkin.MouseState.OUT;
+            Registration_Specialization.Name = "Registration_Specialization";
+            Registration_Specialization.Size = new Size(254, 49);
+            Registration_Specialization.StartIndex = 0;
+            Registration_Specialization.TabIndex = 10;
             // 
             // Registration_Button
             // 
-            this.Registration_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Registration_Button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.Registration_Button.Depth = 0;
-            this.Registration_Button.HighEmphasis = true;
-            this.Registration_Button.Icon = null;
-            this.Registration_Button.Location = new System.Drawing.Point(380, 263);
-            this.Registration_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.Registration_Button.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Registration_Button.Name = "Registration_Button";
-            this.Registration_Button.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.Registration_Button.Size = new System.Drawing.Size(89, 36);
-            this.Registration_Button.TabIndex = 9;
-            this.Registration_Button.Text = "Register";
-            this.Registration_Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.Registration_Button.UseAccentColor = false;
-            this.Registration_Button.UseVisualStyleBackColor = true;
-            this.Registration_Button.Click += new System.EventHandler(this.Registration_Button_Click);
+            Registration_Button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            Registration_Button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            Registration_Button.Depth = 0;
+            Registration_Button.HighEmphasis = true;
+            Registration_Button.Icon = null;
+            Registration_Button.Location = new Point(443, 303);
+            Registration_Button.Margin = new Padding(5, 7, 5, 7);
+            Registration_Button.MouseState = MaterialSkin.MouseState.HOVER;
+            Registration_Button.Name = "Registration_Button";
+            Registration_Button.NoAccentTextColor = Color.Empty;
+            Registration_Button.Size = new Size(89, 36);
+            Registration_Button.TabIndex = 9;
+            Registration_Button.Text = "Register";
+            Registration_Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            Registration_Button.UseAccentColor = false;
+            Registration_Button.UseVisualStyleBackColor = true;
+            Registration_Button.Click += Registration_Button_Click;
             // 
             // Registration_Password
             // 
-            this.Registration_Password.AnimateReadOnly = false;
-            this.Registration_Password.BackColor = System.Drawing.SystemColors.Window;
-            this.Registration_Password.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Registration_Password.Depth = 0;
-            this.Registration_Password.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.Registration_Password.Hint = "Password";
-            this.Registration_Password.LeadingIcon = null;
-            this.Registration_Password.Location = new System.Drawing.Point(137, 204);
-            this.Registration_Password.MaxLength = 50;
-            this.Registration_Password.MouseState = MaterialSkin.MouseState.OUT;
-            this.Registration_Password.Multiline = false;
-            this.Registration_Password.Name = "Registration_Password";
-            this.Registration_Password.Password = true;
-            this.Registration_Password.Size = new System.Drawing.Size(363, 50);
-            this.Registration_Password.TabIndex = 8;
-            this.Registration_Password.Text = "";
-            this.Registration_Password.TrailingIcon = null;
+            Registration_Password.AnimateReadOnly = false;
+            Registration_Password.BackColor = SystemColors.Window;
+            Registration_Password.BorderStyle = BorderStyle.None;
+            Registration_Password.Depth = 0;
+            Registration_Password.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Registration_Password.Hint = "Password";
+            Registration_Password.LeadingIcon = null;
+            Registration_Password.Location = new Point(160, 235);
+            Registration_Password.Margin = new Padding(4, 3, 4, 3);
+            Registration_Password.MaxLength = 50;
+            Registration_Password.MouseState = MaterialSkin.MouseState.OUT;
+            Registration_Password.Multiline = false;
+            Registration_Password.Name = "Registration_Password";
+            Registration_Password.Password = true;
+            Registration_Password.Size = new Size(424, 50);
+            Registration_Password.TabIndex = 8;
+            Registration_Password.Text = "";
+            Registration_Password.TrailingIcon = null;
             // 
             // Registration_Email
             // 
-            this.Registration_Email.AnimateReadOnly = false;
-            this.Registration_Email.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Registration_Email.Depth = 0;
-            this.Registration_Email.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.Registration_Email.Hint = "Email";
-            this.Registration_Email.LeadingIcon = null;
-            this.Registration_Email.Location = new System.Drawing.Point(137, 148);
-            this.Registration_Email.MaxLength = 50;
-            this.Registration_Email.MouseState = MaterialSkin.MouseState.OUT;
-            this.Registration_Email.Multiline = false;
-            this.Registration_Email.Name = "Registration_Email";
-            this.Registration_Email.Size = new System.Drawing.Size(363, 50);
-            this.Registration_Email.TabIndex = 7;
-            this.Registration_Email.Text = "";
-            this.Registration_Email.TrailingIcon = null;
+            Registration_Email.AnimateReadOnly = false;
+            Registration_Email.BorderStyle = BorderStyle.None;
+            Registration_Email.Depth = 0;
+            Registration_Email.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Registration_Email.Hint = "Email";
+            Registration_Email.LeadingIcon = null;
+            Registration_Email.Location = new Point(160, 171);
+            Registration_Email.Margin = new Padding(4, 3, 4, 3);
+            Registration_Email.MaxLength = 50;
+            Registration_Email.MouseState = MaterialSkin.MouseState.OUT;
+            Registration_Email.Multiline = false;
+            Registration_Email.Name = "Registration_Email";
+            Registration_Email.Size = new Size(424, 50);
+            Registration_Email.TabIndex = 7;
+            Registration_Email.Text = "";
+            Registration_Email.TrailingIcon = null;
             // 
             // Registration_Surname
             // 
-            this.Registration_Surname.AnimateReadOnly = false;
-            this.Registration_Surname.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Registration_Surname.Depth = 0;
-            this.Registration_Surname.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.Registration_Surname.Hint = "Surname";
-            this.Registration_Surname.LeadingIcon = null;
-            this.Registration_Surname.Location = new System.Drawing.Point(137, 92);
-            this.Registration_Surname.MaxLength = 50;
-            this.Registration_Surname.MouseState = MaterialSkin.MouseState.OUT;
-            this.Registration_Surname.Multiline = false;
-            this.Registration_Surname.Name = "Registration_Surname";
-            this.Registration_Surname.Size = new System.Drawing.Size(363, 50);
-            this.Registration_Surname.TabIndex = 6;
-            this.Registration_Surname.Text = "";
-            this.Registration_Surname.TrailingIcon = null;
+            Registration_Surname.AnimateReadOnly = false;
+            Registration_Surname.BorderStyle = BorderStyle.None;
+            Registration_Surname.Depth = 0;
+            Registration_Surname.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Registration_Surname.Hint = "Surname";
+            Registration_Surname.LeadingIcon = null;
+            Registration_Surname.Location = new Point(160, 106);
+            Registration_Surname.Margin = new Padding(4, 3, 4, 3);
+            Registration_Surname.MaxLength = 50;
+            Registration_Surname.MouseState = MaterialSkin.MouseState.OUT;
+            Registration_Surname.Multiline = false;
+            Registration_Surname.Name = "Registration_Surname";
+            Registration_Surname.Size = new Size(424, 50);
+            Registration_Surname.TabIndex = 6;
+            Registration_Surname.Text = "";
+            Registration_Surname.TrailingIcon = null;
             // 
             // Registration_Name
             // 
-            this.Registration_Name.AnimateReadOnly = false;
-            this.Registration_Name.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Registration_Name.Depth = 0;
-            this.Registration_Name.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.Registration_Name.Hint = "Name";
-            this.Registration_Name.LeadingIcon = null;
-            this.Registration_Name.Location = new System.Drawing.Point(137, 36);
-            this.Registration_Name.MaxLength = 50;
-            this.Registration_Name.MouseState = MaterialSkin.MouseState.OUT;
-            this.Registration_Name.Multiline = false;
-            this.Registration_Name.Name = "Registration_Name";
-            this.Registration_Name.Size = new System.Drawing.Size(363, 50);
-            this.Registration_Name.TabIndex = 5;
-            this.Registration_Name.Text = "";
-            this.Registration_Name.TrailingIcon = null;
+            Registration_Name.AnimateReadOnly = false;
+            Registration_Name.BorderStyle = BorderStyle.None;
+            Registration_Name.Depth = 0;
+            Registration_Name.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Registration_Name.Hint = "Name";
+            Registration_Name.LeadingIcon = null;
+            Registration_Name.Location = new Point(160, 42);
+            Registration_Name.Margin = new Padding(4, 3, 4, 3);
+            Registration_Name.MaxLength = 50;
+            Registration_Name.MouseState = MaterialSkin.MouseState.OUT;
+            Registration_Name.Multiline = false;
+            Registration_Name.Name = "Registration_Name";
+            Registration_Name.Size = new Size(424, 50);
+            Registration_Name.TabIndex = 5;
+            Registration_Name.Text = "";
+            Registration_Name.TrailingIcon = null;
+            // 
+            // Login_Button
+            // 
+            Login_Button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            Login_Button.CausesValidation = false;
+            Login_Button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            Login_Button.Depth = 0;
+            Login_Button.HighEmphasis = true;
+            Login_Button.Icon = null;
+            Login_Button.Location = new Point(422, 236);
+            Login_Button.Margin = new Padding(5, 7, 5, 7);
+            Login_Button.MouseState = MaterialSkin.MouseState.HOVER;
+            Login_Button.Name = "Login_Button";
+            Login_Button.NoAccentTextColor = Color.Empty;
+            Login_Button.Size = new Size(89, 36);
+            Login_Button.TabIndex = 12;
+            Login_Button.Text = "Login";
+            Login_Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            Login_Button.UseAccentColor = false;
+            Login_Button.UseVisualStyleBackColor = true;
+            Login_Button.Click += Login_Button_Click;
+            // 
+            // Login_Password
+            // 
+            Login_Password.AnimateReadOnly = false;
+            Login_Password.BackColor = SystemColors.Window;
+            Login_Password.BorderStyle = BorderStyle.None;
+            Login_Password.Depth = 0;
+            Login_Password.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Login_Password.Hint = "Password";
+            Login_Password.LeadingIcon = null;
+            Login_Password.Location = new Point(255, 176);
+            Login_Password.Margin = new Padding(4, 3, 4, 3);
+            Login_Password.MaxLength = 50;
+            Login_Password.MouseState = MaterialSkin.MouseState.OUT;
+            Login_Password.Multiline = false;
+            Login_Password.Name = "Login_Password";
+            Login_Password.Password = true;
+            Login_Password.Size = new Size(424, 50);
+            Login_Password.TabIndex = 11;
+            Login_Password.Text = "";
+            Login_Password.TrailingIcon = null;
+            // 
+            // Login_Email
+            // 
+            Login_Email.AnimateReadOnly = false;
+            Login_Email.BorderStyle = BorderStyle.None;
+            Login_Email.Depth = 0;
+            Login_Email.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Login_Email.Hint = "Email";
+            Login_Email.LeadingIcon = null;
+            Login_Email.Location = new Point(255, 112);
+            Login_Email.Margin = new Padding(4, 3, 4, 3);
+            Login_Email.MaxLength = 50;
+            Login_Email.MouseState = MaterialSkin.MouseState.OUT;
+            Login_Email.Multiline = false;
+            Login_Email.Name = "Login_Email";
+            Login_Email.Size = new Size(424, 50);
+            Login_Email.TabIndex = 10;
+            Login_Email.Text = "";
+            Login_Email.TrailingIcon = null;
             // 
             // Authentication
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.propertyGrid1);
-            this.Name = "Authentication";
-            this.Text = "Authentication";
-            this.tabControl1.ResumeLayout(false);
-            this.Registration.ResumeLayout(false);
-            this.Registration.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(933, 519);
+            Controls.Add(tabControl1);
+            Controls.Add(propertyGrid1);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "Authentication";
+            Padding = new Padding(4, 74, 4, 3);
+            Text = "Authentication";
+            tabControl1.ResumeLayout(false);
+            Login.ResumeLayout(false);
+            Login.PerformLayout();
+            Registration.ResumeLayout(false);
+            Registration.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -235,6 +315,9 @@ namespace University
         private MaterialSkin.Controls.MaterialTextBox Registration_Password;
         private MaterialSkin.Controls.MaterialButton Registration_Button;
         private MaterialSkin.Controls.MaterialComboBox Registration_Specialization;
+        private MaterialSkin.Controls.MaterialButton Login_Button;
+        private MaterialSkin.Controls.MaterialTextBox Login_Password;
+        private MaterialSkin.Controls.MaterialTextBox Login_Email;
     }
 }
 

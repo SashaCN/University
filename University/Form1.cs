@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -59,6 +60,29 @@ namespace University
         }
         public enum Tabs { Login = 0, Registration = 1 }
 
+        // getting all students
+        public List<Student> getStudents()
+        {
+            List<Student> students = new List<Student>();
+
+            try
+            {
+                using (FileStream fs = new FileStream("Database\\students.json", FileMode.Open, FileAccess.Read))
+                {
+                    students = JsonSerializer.Deserialize<List<Student>>(fs);
+                }
+            }
+            catch (Exception i)
+            {
+                string message = i.Message;
+                students = new List<Student>();
+            }
+
+            return students;
+
+        }
+
+
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             if (tabControl1.SelectedIndex == (int)Tabs.Registration)
@@ -84,6 +108,11 @@ namespace University
                 return;
             }
 
+            // Getting all students to add a new one
+
+            List<Student> students = getStudents();
+            //List<Student> students = new List<Student>();
+
             // Finding the correct specialization
 
             Specialization specialization;
@@ -95,24 +124,19 @@ namespace University
             // Creating new student
 
             Student student = new Student(Registration_Name.Text, Registration_Surname.Text, Registration_Email.Text, Registration_Password.Text, specialization);
+            students.Add(student);
 
             // Saving student to json
 
-            if (!File.Exists("Database\\students.json"))
+            using (FileStream fs = new FileStream("Database\\students.json", FileMode.Create, FileAccess.ReadWrite))
             {
-                using (FileStream fs = new FileStream("Database\\students.json", FileMode.OpenOrCreate))
-                {
-                    JsonSerializer.Serialize<Student>(fs, student);
-                }
-            } else
-            {
-                using (FileStream fs = new FileStream("Database\\students.json", FileMode.Append, FileAccess.Write))
-                {
-                    JsonSerializer.Serialize<Student>(fs, student);
-                }
-
+                JsonSerializer.Serialize(fs, students);
             }
+        }
 
+        private void Login_Button_Click(object sender, EventArgs e)
+        {
+            List<Student> students = new List<Student>(getStudents());
         }
     }
 }
