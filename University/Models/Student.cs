@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace University.Models
 {
-    public class Student : User
+    public sealed class Student : User
     {
         public Specialization Specialization { get; set; } // Спеціальність
 
@@ -17,6 +17,13 @@ namespace University.Models
         public Student(string name, string surname, string email, string password, Specialization specialization) : base(name, surname, email, password)
         {
             Specialization = specialization;
+        }
+
+        public override List<string> getInfo()
+        {
+            List<string> info = base.getInfo();
+            info.Add(Specialization.Name);
+            return info;
         }
     }
 }

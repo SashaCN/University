@@ -25,5 +25,15 @@ namespace University.Models
 
         }
 
+        public virtual List<string> getInfo()
+        {
+            List<string> info = new List<string>();
+            info.Add(Name);
+            info.Add(Surname);
+            info.Add(Email);
+
+            return info;
+        }
+
     }
 }

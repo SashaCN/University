@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace University.Models
 {
-    public class Specialization
+    public sealed class Specialization
     {
         public string Name { get; set; }
         public List<Subject> Subjects { get; set; }
