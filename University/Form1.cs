@@ -1,4 +1,4 @@
-using MaterialSkin;
+﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using University.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace University
 {
@@ -34,6 +35,8 @@ namespace University
             Color White = Color.White;
             materialSkinManager.ColorScheme = new ColorScheme(Dark, Dark, MoreDark, Orange, TextShade.WHITE);
 
+            List<Specialization> specializations = new List<Specialization>();
+
             Specialization ipz = new Specialization("121_ipz");
             ipz.Subjects.Add(new Subject("OOP"));
             ipz.Subjects.Add(new Subject("Math analysis"));
@@ -41,10 +44,7 @@ namespace University
             ipz.Subjects.Add(new Subject("IPZ basis"));
             ipz.Subjects.Add(new Subject("English"));
 
-            using (FileStream fs = new FileStream("Database\\Faculties\\FIT\\121_IPZ.json", FileMode.OpenOrCreate))
-            {
-                JsonSerializer.Serialize<Specialization>(fs, ipz);
-            }
+            specializations.Add(ipz);
 
             Specialization ce = new Specialization("123_ce");
             ce.Subjects.Add(new Subject("OOP"));
@@ -53,10 +53,10 @@ namespace University
             ce.Subjects.Add(new Subject("Probability theory"));
             ce.Subjects.Add(new Subject("English"));
 
-            using (FileStream fs = new FileStream("Database\\Faculties\\FIT\\123_CE.json", FileMode.OpenOrCreate))
-            {
-                JsonSerializer.Serialize<Specialization>(fs, ce);
-            }
+            specializations.Add(ce);
+
+            IFile<Specialization> file = new FileController<Specialization>("\\Faculties\\FIT\\121_IPZ.json");
+            file.write(specializations);
         }
         public enum Tabs { Login = 0, Registration = 1 }
 
@@ -81,7 +81,7 @@ namespace University
 
         }
 
-
+        // filling the list of specializations
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             if (tabControl1.SelectedIndex == (int)Tabs.Registration)
@@ -148,7 +148,12 @@ namespace University
                     if (Login_Password.Text == student.Password)
                     {
                         authorizedStudent = student;
-                        MessageBox.Show("Login successfully!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        
+                        Profile profileForm = new Profile(student);
+
+                        profileForm.Show();
+                        Hide();
+
                         break;
                     } else
                     {
@@ -156,11 +161,7 @@ namespace University
                         break;
                     }
                 }
-                else
-                {
-                    MessageBox.Show("There is not registered student with such email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    return;
-                }
+                // доробити перевірку, якщо не знайдено студента
 
             }
         }

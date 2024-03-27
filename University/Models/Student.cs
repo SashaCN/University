@@ -18,12 +18,5 @@ namespace University.Models
         {
             Specialization = specialization;
         }
-
-        public override List<string> getInfo()
-        {
-            List<string> info = base.getInfo();
-            info.Add(Specialization.Name);
-            return info;
-        }
     }
 }
