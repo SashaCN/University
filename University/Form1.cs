@@ -35,8 +35,6 @@ namespace University
             Color White = Color.White;
             materialSkinManager.ColorScheme = new ColorScheme(Dark, Dark, MoreDark, Orange, TextShade.WHITE);
 
-            List<Specialization> specializations = new List<Specialization>();
-
             Specialization ipz = new Specialization("121_ipz");
             ipz.Subjects.Add(new Subject("OOP"));
             ipz.Subjects.Add(new Subject("Math analysis"));
@@ -44,7 +42,8 @@ namespace University
             ipz.Subjects.Add(new Subject("IPZ basis"));
             ipz.Subjects.Add(new Subject("English"));
 
-            specializations.Add(ipz);
+            IFile<Specialization> ipzFile = new FileController<Specialization>("Faculties\\FIT\\121_IPZ.json");
+            ipzFile.writeObject(ipz);
 
             Specialization ce = new Specialization("123_ce");
             ce.Subjects.Add(new Subject("OOP"));
@@ -53,32 +52,18 @@ namespace University
             ce.Subjects.Add(new Subject("Probability theory"));
             ce.Subjects.Add(new Subject("English"));
 
-            specializations.Add(ce);
-
-            IFile<Specialization> file = new FileController<Specialization>("\\Faculties\\FIT\\121_IPZ.json");
-            file.write(specializations);
+            IFile<Specialization> ceFile = new FileController<Specialization>("Faculties\\FIT\\123_CE.json");
+            ceFile.writeObject(ce);
         }
         public enum Tabs { Login = 0, Registration = 1 }
 
         // getting all students
         public List<Student> getStudents()
         {
-            List<Student> students = new List<Student>();
-
-            try
-            {
-                using (FileStream fs = new FileStream("Database\\students.json", FileMode.Open, FileAccess.Read))
-                {
-                    students = JsonSerializer.Deserialize<List<Student>>(fs);
-                }
-            }
-            catch (Exception)
-            {
-                students = new List<Student>();
-            }
+            IFile<Student> file = new FileController<Student>("students.json");
+            List<Student> students = file.readList();
 
             return students;
-
         }
 
         // filling the list of specializations
@@ -108,17 +93,14 @@ namespace University
             }
 
             // Getting all students to add a new one
-
+            
             List<Student> students = getStudents();
             //List<Student> students = new List<Student>();
 
             // Finding the correct specialization
 
-            Specialization specialization;
-            using (FileStream fs = new FileStream($"Database\\Faculties\\FIT\\{Registration_Specialization.Text}.json", FileMode.OpenOrCreate))
-            {
-                specialization = JsonSerializer.Deserialize<Specialization>(fs);
-            }
+            IFile<Specialization> fileSpecialization = new FileController<Specialization>($"Faculties\\FIT\\{Registration_Specialization.Text}.json");
+            Specialization specialization = fileSpecialization.readObject();
 
             // Creating new student
 
@@ -127,10 +109,8 @@ namespace University
 
             // Saving student to json
 
-            using (FileStream fs = new FileStream("Database\\students.json", FileMode.Create, FileAccess.ReadWrite))
-            {
-                JsonSerializer.Serialize(fs, students);
-            }
+            IFile<Student> fileStudent = new FileController<Student>("students.json");
+            fileStudent.writeList(students);
 
             MessageBox.Show("Registration successfully!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }

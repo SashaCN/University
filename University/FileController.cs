@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using University.Models;
+﻿using System.Text.Json;
 
 namespace University
 {
@@ -12,24 +6,51 @@ namespace University
     {
         string IFile<T>.FilePath { get; set; } = "Database\\";
 
-        public FileController (string file)
+        public FileController(string file)
         {
             ((IFile<T>)this).FilePath += file;
         }
 
-        List<T> IFile<T>.read()
+        List<T> IFile<T>.readList()
         {
-            using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.OpenOrCreate))
+            List<T> list = new List<T>();
+
+            try
             {
-                return JsonSerializer.Deserialize<List<T>>(fs);
+                using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.Open, FileAccess.Read))
+                {
+                    list = JsonSerializer.Deserialize<List<T>>(fs);
+                }
+            }
+            catch (Exception)
+            {
+                list = new List<T>();
+            }
+
+            return list;
+        }
+
+        T IFile<T>.readObject()
+        {
+            using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.Open, FileAccess.Read))
+            {
+                return JsonSerializer.Deserialize<T>(fs);
             }
         }
 
-        void IFile<T>.write(List<T> list)
+        void IFile<T>.writeList(List<T> list)
         {
             using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.OpenOrCreate))
             {
                 JsonSerializer.Serialize<List<T>>(fs, list);
+            }
+        }
+
+        void IFile<T>.writeObject(T obj)
+        {
+            using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.OpenOrCreate))
+            {
+                JsonSerializer.Serialize<T>(fs, obj);
             }
         }
     }

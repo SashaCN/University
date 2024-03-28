@@ -12,7 +12,9 @@ namespace University
     {
         public string FilePath { get; set; }
 
-        public void write(List<T> list);
-        public List<T> read();
+        public void writeList(List<T> list);
+        public void writeObject(T obj);
+        public List<T> readList();
+        public T readObject();
     }
 }
