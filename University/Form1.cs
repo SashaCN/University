@@ -81,6 +81,8 @@ namespace University
             }
         }
 
+        delegate void RegistrationDelegate();
+
         private void Registration_Button_Click(object sender, EventArgs e)
         {
 
@@ -92,19 +94,26 @@ namespace University
                 return;
             }
 
-            // Creating of a new student
-            Student student = new Student();
-            student.Create(Registration_Name.Text, Registration_Surname.Text, Registration_Email.Text, Registration_Password.Text, Registration_Specialization.Text);
+
+            object obj;
+            if (Registration_Teacher.Checked)
+                obj = new Teacher(Registration_Name.Text, Registration_Surname.Text, Registration_Email.Text, Registration_Password.Text);
+            else
+                obj = new Student(Registration_Name.Text, Registration_Surname.Text, Registration_Email.Text, Registration_Password.Text, Registration_Specialization.Text);
+
+            // Створення делегата і виклик методу create
+            RegistrationDelegate registration = (obj is Teacher) ? ((Teacher)obj).Create : ((Student)obj).Create;
+            registration();
 
             // Success message 
             MessageBox.Show("Registration successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
 
-        public Student authorizedStudent = new Student();
+        public Student authorizedStudent = new();
 
         private void Login_Button_Click(object sender, EventArgs e)
         {
-            List<Student> students = new List<Student>(getStudents());
+            List<Student> students = new(getStudents());
 
             foreach(Student student in students)
             {
@@ -114,7 +123,7 @@ namespace University
                     {
                         authorizedStudent = student;
                         
-                        Profile profileForm = new Profile(student);
+                        Profile profileForm = new(student);
 
                         profileForm.Show();
                         Hide();
@@ -127,7 +136,6 @@ namespace University
                     }
                 }
                 // доробити перевірку, якщо не знайдено студента
-
             }
         }
     }

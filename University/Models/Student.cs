@@ -20,6 +20,13 @@ namespace University.Models
             Specialization = specialization;
         }
 
+        public Student(string name, string surname, string email, string password, string specialization) : base(name, surname, email, password)
+        {
+            IFile<Specialization> fileSpecialization = new FileController<Specialization>($"Faculties\\FIT\\{specialization}.json");
+            Specialization specializationObj = fileSpecialization.readObject();
+            Specialization = specializationObj;
+        }
+
         public void Create(string name, string surname, string email, string password, string specializationName)
         {
             List<Student> students = ReadAll();
@@ -27,12 +34,23 @@ namespace University.Models
             IFile<Specialization> fileSpecialization = new FileController<Specialization>($"Faculties\\FIT\\{specializationName}.json");
             Specialization specialization = fileSpecialization.readObject();
 
-            Student student = new Student(name, surname, email, password, specialization);
+            Student student = new(name, surname, email, password, specialization);
             students.Add(student);
 
             IFile<Student> fileStudent = new FileController<Student>(fileName);
             fileStudent.writeList(students);
         }
+        public void Create()
+        {
+            List<Student> students = ReadAll();
+
+            Student student = new(Name, Surname, Email, Password, Specialization);
+            students.Add(student);
+
+            IFile<Student> fileStudent = new FileController<Student>(fileName);
+            fileStudent.writeList(students);
+        }
+
 
         public List<Student> ReadAll()
         {

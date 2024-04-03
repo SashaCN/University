@@ -48,7 +48,7 @@ namespace University
         }
         private void Profile_Shown(object sender, EventArgs e)
         {
-            Student student = new Student();
+            Student student = new();
 
             Profile_Name.Text = student.Name + " " + student.Surname;
         }
