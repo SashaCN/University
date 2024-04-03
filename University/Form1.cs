@@ -92,27 +92,12 @@ namespace University
                 return;
             }
 
-            // Getting all students to add a new one
-            
-            List<Student> students = getStudents();
-            //List<Student> students = new List<Student>();
+            // Creating of a new student
+            Student student = new Student();
+            student.Create(Registration_Name.Text, Registration_Surname.Text, Registration_Email.Text, Registration_Password.Text, Registration_Specialization.Text);
 
-            // Finding the correct specialization
-
-            IFile<Specialization> fileSpecialization = new FileController<Specialization>($"Faculties\\FIT\\{Registration_Specialization.Text}.json");
-            Specialization specialization = fileSpecialization.readObject();
-
-            // Creating new student
-
-            Student student = new Student(Registration_Name.Text, Registration_Surname.Text, Registration_Email.Text, Registration_Password.Text, specialization);
-            students.Add(student);
-
-            // Saving student to json
-
-            IFile<Student> fileStudent = new FileController<Student>("students.json");
-            fileStudent.writeList(students);
-
-            MessageBox.Show("Registration successfully!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            // Success message 
+            MessageBox.Show("Registration successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
 
         public Student authorizedStudent = new Student();

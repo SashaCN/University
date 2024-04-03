@@ -11,47 +11,39 @@ namespace University
             ((IFile<T>)this).FilePath += file;
         }
 
-        List<T> IFile<T>.readList()
+        List<T> IReadFile<T>.readList()
         {
-            List<T> list = new List<T>();
+            var list = new List<T>();
 
             try
             {
-                using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.Open, FileAccess.Read))
-                {
-                    list = JsonSerializer.Deserialize<List<T>>(fs);
-                }
+                using var fs = new FileStream(((IFile<T>)this).FilePath, FileMode.Open, FileAccess.Read);
+                list = JsonSerializer.Deserialize<List<T>>(fs);
             }
             catch (Exception)
             {
-                list = new List<T>();
+                list = [];
             }
 
             return list;
         }
 
-        T IFile<T>.readObject()
+        T IReadFile<T>.readObject()
         {
-            using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.Open, FileAccess.Read))
-            {
-                return JsonSerializer.Deserialize<T>(fs);
-            }
+            using var fs = new FileStream(((IFile<T>)this).FilePath, FileMode.Open, FileAccess.Read);
+            return JsonSerializer.Deserialize<T>(fs);
         }
 
-        void IFile<T>.writeList(List<T> list)
+        void IWriteFile<T>.writeList(List<T> list)
         {
-            using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.OpenOrCreate))
-            {
-                JsonSerializer.Serialize<List<T>>(fs, list);
-            }
+            using var fs = new FileStream(((IFile<T>)this).FilePath, FileMode.OpenOrCreate);
+            JsonSerializer.Serialize(fs, list);
         }
 
-        void IFile<T>.writeObject(T obj)
+        void IWriteFile<T>.writeObject(T obj)
         {
-            using (FileStream fs = new FileStream(((IFile<T>)this).FilePath, FileMode.OpenOrCreate))
-            {
-                JsonSerializer.Serialize<T>(fs, obj);
-            }
+            using var fs = new FileStream(((IFile<T>)this).FilePath, FileMode.OpenOrCreate);
+            JsonSerializer.Serialize(fs, obj);
         }
     }
 }

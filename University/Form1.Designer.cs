@@ -33,6 +33,9 @@ namespace University
             propertyGrid1 = new PropertyGrid();
             tabControl1 = new TabControl();
             Login = new TabPage();
+            Login_Button = new MaterialSkin.Controls.MaterialButton();
+            Login_Password = new MaterialSkin.Controls.MaterialTextBox();
+            Login_Email = new MaterialSkin.Controls.MaterialTextBox();
             Registration = new TabPage();
             Registration_Specialization = new MaterialSkin.Controls.MaterialComboBox();
             Registration_Button = new MaterialSkin.Controls.MaterialButton();
@@ -40,9 +43,7 @@ namespace University
             Registration_Email = new MaterialSkin.Controls.MaterialTextBox();
             Registration_Surname = new MaterialSkin.Controls.MaterialTextBox();
             Registration_Name = new MaterialSkin.Controls.MaterialTextBox();
-            Login_Button = new MaterialSkin.Controls.MaterialButton();
-            Login_Password = new MaterialSkin.Controls.MaterialTextBox();
-            Login_Email = new MaterialSkin.Controls.MaterialTextBox();
+            Registration_Teacher = new MaterialSkin.Controls.MaterialCheckbox();
             tabControl1.SuspendLayout();
             Login.SuspendLayout();
             Registration.SuspendLayout();
@@ -83,9 +84,71 @@ namespace University
             Login.TabIndex = 0;
             Login.Text = "Login";
             // 
+            // Login_Button
+            // 
+            Login_Button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            Login_Button.CausesValidation = false;
+            Login_Button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            Login_Button.Depth = 0;
+            Login_Button.HighEmphasis = true;
+            Login_Button.Icon = null;
+            Login_Button.Location = new Point(422, 236);
+            Login_Button.Margin = new Padding(5, 7, 5, 7);
+            Login_Button.MouseState = MaterialSkin.MouseState.HOVER;
+            Login_Button.Name = "Login_Button";
+            Login_Button.NoAccentTextColor = Color.Empty;
+            Login_Button.Size = new Size(64, 36);
+            Login_Button.TabIndex = 12;
+            Login_Button.Text = "Login";
+            Login_Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            Login_Button.UseAccentColor = false;
+            Login_Button.UseVisualStyleBackColor = true;
+            Login_Button.Click += Login_Button_Click;
+            // 
+            // Login_Password
+            // 
+            Login_Password.AnimateReadOnly = false;
+            Login_Password.BackColor = SystemColors.Window;
+            Login_Password.BorderStyle = BorderStyle.None;
+            Login_Password.Depth = 0;
+            Login_Password.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Login_Password.Hint = "Password";
+            Login_Password.LeadingIcon = null;
+            Login_Password.Location = new Point(255, 176);
+            Login_Password.Margin = new Padding(4, 3, 4, 3);
+            Login_Password.MaxLength = 50;
+            Login_Password.MouseState = MaterialSkin.MouseState.OUT;
+            Login_Password.Multiline = false;
+            Login_Password.Name = "Login_Password";
+            Login_Password.Password = true;
+            Login_Password.Size = new Size(424, 50);
+            Login_Password.TabIndex = 11;
+            Login_Password.Text = "";
+            Login_Password.TrailingIcon = null;
+            // 
+            // Login_Email
+            // 
+            Login_Email.AnimateReadOnly = false;
+            Login_Email.BorderStyle = BorderStyle.None;
+            Login_Email.Depth = 0;
+            Login_Email.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Login_Email.Hint = "Email";
+            Login_Email.LeadingIcon = null;
+            Login_Email.Location = new Point(255, 112);
+            Login_Email.Margin = new Padding(4, 3, 4, 3);
+            Login_Email.MaxLength = 50;
+            Login_Email.MouseState = MaterialSkin.MouseState.OUT;
+            Login_Email.Multiline = false;
+            Login_Email.Name = "Login_Email";
+            Login_Email.Size = new Size(424, 50);
+            Login_Email.TabIndex = 10;
+            Login_Email.Text = "";
+            Login_Email.TrailingIcon = null;
+            // 
             // Registration
             // 
             Registration.BackColor = Color.FromArgb(50, 50, 50);
+            Registration.Controls.Add(Registration_Teacher);
             Registration.Controls.Add(Registration_Specialization);
             Registration.Controls.Add(Registration_Button);
             Registration.Controls.Add(Registration_Password);
@@ -223,66 +286,21 @@ namespace University
             Registration_Name.Text = "";
             Registration_Name.TrailingIcon = null;
             // 
-            // Login_Button
+            // Registration_Teacher
             // 
-            Login_Button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            Login_Button.CausesValidation = false;
-            Login_Button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            Login_Button.Depth = 0;
-            Login_Button.HighEmphasis = true;
-            Login_Button.Icon = null;
-            Login_Button.Location = new Point(422, 236);
-            Login_Button.Margin = new Padding(5, 7, 5, 7);
-            Login_Button.MouseState = MaterialSkin.MouseState.HOVER;
-            Login_Button.Name = "Login_Button";
-            Login_Button.NoAccentTextColor = Color.Empty;
-            Login_Button.Size = new Size(89, 36);
-            Login_Button.TabIndex = 12;
-            Login_Button.Text = "Login";
-            Login_Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            Login_Button.UseAccentColor = false;
-            Login_Button.UseVisualStyleBackColor = true;
-            Login_Button.Click += Login_Button_Click;
-            // 
-            // Login_Password
-            // 
-            Login_Password.AnimateReadOnly = false;
-            Login_Password.BackColor = SystemColors.Window;
-            Login_Password.BorderStyle = BorderStyle.None;
-            Login_Password.Depth = 0;
-            Login_Password.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Login_Password.Hint = "Password";
-            Login_Password.LeadingIcon = null;
-            Login_Password.Location = new Point(255, 176);
-            Login_Password.Margin = new Padding(4, 3, 4, 3);
-            Login_Password.MaxLength = 50;
-            Login_Password.MouseState = MaterialSkin.MouseState.OUT;
-            Login_Password.Multiline = false;
-            Login_Password.Name = "Login_Password";
-            Login_Password.Password = true;
-            Login_Password.Size = new Size(424, 50);
-            Login_Password.TabIndex = 11;
-            Login_Password.Text = "";
-            Login_Password.TrailingIcon = null;
-            // 
-            // Login_Email
-            // 
-            Login_Email.AnimateReadOnly = false;
-            Login_Email.BorderStyle = BorderStyle.None;
-            Login_Email.Depth = 0;
-            Login_Email.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Login_Email.Hint = "Email";
-            Login_Email.LeadingIcon = null;
-            Login_Email.Location = new Point(255, 112);
-            Login_Email.Margin = new Padding(4, 3, 4, 3);
-            Login_Email.MaxLength = 50;
-            Login_Email.MouseState = MaterialSkin.MouseState.OUT;
-            Login_Email.Multiline = false;
-            Login_Email.Name = "Login_Email";
-            Login_Email.Size = new Size(424, 50);
-            Login_Email.TabIndex = 10;
-            Login_Email.Text = "";
-            Login_Email.TrailingIcon = null;
+            Registration_Teacher.AutoSize = true;
+            Registration_Teacher.Depth = 0;
+            Registration_Teacher.Location = new Point(161, 303);
+            Registration_Teacher.Margin = new Padding(0);
+            Registration_Teacher.MouseLocation = new Point(-1, -1);
+            Registration_Teacher.MouseState = MaterialSkin.MouseState.HOVER;
+            Registration_Teacher.Name = "Registration_Teacher";
+            Registration_Teacher.ReadOnly = false;
+            Registration_Teacher.Ripple = true;
+            Registration_Teacher.Size = new Size(114, 37);
+            Registration_Teacher.TabIndex = 11;
+            Registration_Teacher.Text = "I`m teacher";
+            Registration_Teacher.UseVisualStyleBackColor = true;
             // 
             // Authentication
             // 
@@ -318,6 +336,7 @@ namespace University
         private MaterialSkin.Controls.MaterialButton Login_Button;
         private MaterialSkin.Controls.MaterialTextBox Login_Password;
         private MaterialSkin.Controls.MaterialTextBox Login_Email;
+        private MaterialSkin.Controls.MaterialCheckbox Registration_Teacher;
     }
 }
 

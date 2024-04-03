@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
-using University.Models;
 
 namespace University
 {
-     public interface IFile<T> : IReadFile<T>, IWriteFile<T>
+    public interface IReadFile<T>
     {
-        public string FilePath { get; set; }
+        public List<T> readList();
+        public T readObject();
     }
 }
