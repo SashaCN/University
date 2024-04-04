@@ -42,8 +42,9 @@ namespace University
             ipz.Subjects.Add(new Subject("IPZ basis"));
             ipz.Subjects.Add(new Subject("English"));
 
-            IFile<Specialization> ipzFile = new FileController<Specialization>("Faculties\\FIT\\121_IPZ.json");
-            ipzFile.writeObject(ipz);
+            Repository<Specialization>
+                .GetRepo("Faculties\\FIT\\121_IPZ.json")
+                .Create(ipz);
 
             Specialization ce = new Specialization("123_ce");
             ce.Subjects.Add(new Subject("OOP"));
@@ -52,16 +53,18 @@ namespace University
             ce.Subjects.Add(new Subject("Probability theory"));
             ce.Subjects.Add(new Subject("English"));
 
-            IFile<Specialization> ceFile = new FileController<Specialization>("Faculties\\FIT\\123_CE.json");
-            ceFile.writeObject(ce);
+            Repository<Specialization>
+                .GetRepo("Faculties\\FIT\\123_CE.json")
+                .Create(ce);
         }
         public enum Tabs { Login = 0, Registration = 1 }
 
         // getting all students
         public List<Student> getStudents()
         {
-            IFile<Student> file = new FileController<Student>("students.json");
-            List<Student> students = file.readList();
+            List<Student> students = Repository<Student>
+               .GetRepo("students.json")
+               .GetAll();
 
             return students;
         }
@@ -93,8 +96,7 @@ namespace University
                 MessageBox.Show("Fill all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 return;
             }
-
-
+          
             object obj;
             if (Registration_Teacher.Checked)
                 obj = new Teacher(Registration_Name.Text, Registration_Surname.Text, Registration_Email.Text, Registration_Password.Text);
@@ -113,29 +115,19 @@ namespace University
 
         private void Login_Button_Click(object sender, EventArgs e)
         {
-            List<Student> students = new(getStudents());
+            List<Student> students = getStudents();
 
-            foreach(Student student in students)
+            var student = students.FirstOrDefault(s => s.Email == Login_Email.Text && s.Password == Login_Password.Text);
+            if (student != null)
             {
-                if (Login_Email.Text == student.Email)
-                {
-                    if (Login_Password.Text == student.Password)
-                    {
-                        authorizedStudent = student;
-                        
-                        Profile profileForm = new(student);
-
-                        profileForm.Show();
-                        Hide();
-
-                        break;
-                    } else
-                    {
-                        MessageBox.Show("Password is incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        break;
-                    }
-                }
-                // доробити перевірку, якщо не знайдено студента
+                authorizedStudent = student;
+                Profile profileForm = new(student);
+                profileForm.Show();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Email or password is incorrect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
         }
     }

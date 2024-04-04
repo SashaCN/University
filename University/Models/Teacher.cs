@@ -23,30 +23,25 @@ namespace University.Models
 
         public void Create(string name, string surname, string email, string password)
         {
-            List<Teacher> teachers = ReadAll();
-
             Teacher teacher = new(name, surname, email, password);
-            teachers.Add(teacher);
-
-            IFile<Teacher> fileTeacher = new FileController<Teacher>(fileName);
-            fileTeacher.writeList(teachers);
+            Repository<Teacher>
+                .GetRepo(fileName)
+                .Create(teacher);
         }
 
         public void Create()
         {
-            List<Teacher> teachers = ReadAll();
-
             Teacher teacher = new(Name, Surname, Email, Password);
-            teachers.Add(teacher);
-
-            IFile<Teacher> fileTeacher = new FileController<Teacher>(fileName);
-            fileTeacher.writeList(teachers);
+            Repository<Teacher>
+                .GetRepo(fileName)
+                .Create(teacher);
         }
 
         public List<Teacher> ReadAll()
         {
-            IFile<Teacher> file = new FileController<Teacher>(fileName);
-            List<Teacher> teachers = file.readList();
+            List<Teacher> teachers = Repository<Teacher>
+                .GetRepo(fileName)
+                .GetAll();
 
             return teachers;
         }
